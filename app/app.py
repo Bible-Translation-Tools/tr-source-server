@@ -1,10 +1,8 @@
 from flask import Flask
+from flask_autoindex import AutoIndex
+
 application = Flask(__name__)
-
-
-@application.route('/')
-def hello_world():
-    return 'Hello, World!'
+AutoIndex(application, '/files', add_url_rules=True)
 
 if __name__ == '__main__':
     application.run()

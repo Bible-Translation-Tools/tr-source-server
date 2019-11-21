@@ -1,0 +1,18 @@
+version: '2'
+
+volumes:
+  share:
+    driver: local
+    driver_opts:
+      type: cifs
+      #SHARE_IP_DIR should be in the format //<server_ip_address>/<share_name>
+      device: //${SRC_IP}/tr_source
+      o:  username=${UNAME},password=${PWORD}
+
+services:
+  tr-source-server:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - share:/files
